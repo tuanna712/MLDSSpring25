@@ -169,4 +169,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-data/
+2020_force/
+CSV_train.csv
+.DS_Store
+notebooks/examples/
