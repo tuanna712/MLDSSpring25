@@ -16,29 +16,34 @@ file_path = "/Users/dna-tuananguyen/Downloads/CUB/Classes/2025 Spring/5612 MLDS/
 
 LithoData <- read.transactions(file_path,
                            rm.duplicates = FALSE, 
-                           format = "basket",  ##if you use "single" also use cols=c(1,2)
-                           sep=",",  ## csv file
-                           cols=1) ## The dataset HAS row numbers
+                           format = "basket", 
+                           sep=",", 
+                           cols=1)
 inspect(LithoData)
 
-##### Use apriori to get the RULES
-LithoRulesK = arules::apriori(LithoData, parameter = list(support=.35, 
-                                                 confidence=.25, minlen=3))
+##### Use Apriori to get the RULES
+LithoRulesK = arules::apriori(LithoData, parameter = list(support=.35, confidence=.25, minlen=2))
+
 inspect(LithoRulesK)
 
-## Count:
-## count of times the products occur together in the transactions. 
+## Count of times the products occur together in the transactions. 
 
 ## Plot of which items are most frequent
-arules::itemFrequencyPlot(LithoData, topN = 5,
+arules::itemFrequencyPlot(LithoData, topN = 10,
                           col = brewer.pal(8, 'Pastel2'),
                           main = 'Relative Item Frequency Plot',
                           type = "relative", #absolute
                           ylab = "Item Frequency (Relative)")
 
 ## Sort rules by a measure such as conf, sup, or lift
-SortedRulesK <- sort(LithoRulesK, by="lift", decreasing=TRUE)
-inspect(SortedRulesK[1:10])
+SortedRulesKSup <- sort(LithoRulesK, by="sup", decreasing=TRUE)
+SortedRulesKConf <- sort(LithoRulesK, by="conf", decreasing=TRUE)
+SortedRulesKLift <- sort(LithoRulesK, by="lift", decreasing=TRUE)
+
+inspect(SortedRulesKSup[1:15])
+inspect(SortedRulesKConf[1:15])
+inspect(SortedRulesKLift[1:15])
+
 (summary(SortedRulesK))
 
 ## Selecting or targeting specific rules  RHS
