@@ -12,7 +12,7 @@ library(RColorBrewer)
 
 ## YOUR working dir goes here...
 setwd("/Users/dna-tuananguyen/Downloads/CUB/Classes/2025 Spring/5612 MLDS/CourseProject/Github/MLDSSpring25/notebooks")
-file_path = "/Users/dna-tuananguyen/Downloads/CUB/Classes/2025 Spring/5612 MLDS/CourseProject/Github/MLDSSpring25/notebooks/data/force/arm_data_noShale.csv"
+file_path = "/Users/dna-tuananguyen/Downloads/CUB/Classes/2025 Spring/5612 MLDS/CourseProject/Github/MLDSSpring25/notebooks/data/arm/arm_data_noShale.csv"
 
 LithoData <- read.transactions(file_path,
                            rm.duplicates = FALSE, 
@@ -47,11 +47,11 @@ inspect(SortedRulesKLift[1:15])
 (summary(SortedRulesK))
 
 ## Selecting or targeting specific rules  RHS
-LithoRules <- apriori(data=LithoData,parameter = list(supp=.001, conf=.01, minlen=2),
-                     appearance = list(default="lhs", rhs="Sandstone"),
+HighRHOBRules <- apriori(data=LithoData,parameter = list(supp=.001, conf=.01, minlen=2),
+                     appearance = list(default="lhs", rhs="HighRHOB"),
                      control=list(verbose=FALSE))
-LithoRules <- sort(LithoRules, decreasing=TRUE, by="confidence")
-inspect(LithoRules[1:4])
+HighRHOBRules <- sort(HighRHOBRules, decreasing=TRUE, by="confidence")
+inspect(HighRHOBRules[1:4])
 
 ## Selecting rules with LHS specified
 UtsiraFmRules <- apriori(data=LithoData,parameter = list(supp=.0001, conf=.001, minlen=2),
