@@ -44,7 +44,7 @@ inspect(SortedRulesKSup[1:15])
 inspect(SortedRulesKConf[1:15])
 inspect(SortedRulesKLift[1:15])
 
-(summary(SortedRulesK))
+(summary(SortedRulesKLift))
 
 ## Selecting or targeting specific rules  RHS
 HighRHOBRules <- apriori(data=LithoData,parameter = list(supp=.001, conf=.01, minlen=2),
@@ -62,7 +62,7 @@ inspect(UtsiraFmRules[1:4])
 
 ## Visualize (tcltk)
 
-subrulesK <- head(sort(SortedRulesK, by="lift"),100)
+subrulesK <- head(sort(SortedRulesKLift, by="lift"),100)
 plot(subrulesK)
 
-plot(subrulesK, method="graph", engine="interactive")
+plot(SortedRulesKLift, method="graph", engine="interactive")
